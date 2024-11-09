@@ -9,20 +9,38 @@ import sys
 
 
 DATA_PATH = "data"
+OUTPUT_PATH = "output"
 GENRE_MAPPING = {
-    "test": 0,
+    "test": 0,  # reserve for test
     "house": 1,
     "trance": 2,
     "techno": 3,
     "hardstyle": 4,
     "trap": 5,
     "dubstep": 6,
-    "electro": 7,
+    "electro_house": 7,
+    "bigroom_house": 8,
+    "bigroom_techno": 9,
+    "bigroom_trance": 10,
+    "hardcore": 11,
+    "future_rave": 12,
+    "future_bass": 13,
+    "future_house": 14,
+    "melodic_bass": 15,
+    "psytrance": 16,
+    "tech_house": 17,
+    "deep_house": 18,
+    "tropical_house": 19,
+    "progressove_house": 20,
+    "slap_house": 21,
+    "bass_house": 22,
+    "hard_trance": 23,
+    "hard_techno": 24,
 }
 
 
 def generate_dataset(genre):
-    csv_file = f"{DATA_PATH}/output/{genre}.csv"
+    csv_file = f"{OUTPUT_PATH}/{genre}.csv"
     genre_path = f"{DATA_PATH}/{genre}/"
 
     df = (
@@ -188,4 +206,9 @@ if __name__ == "__main__":
         sys.exit(1)
 
     genre = sys.argv[-1]
+
+    if genre not in GENRE_MAPPING:
+        print("[x] Genere is not available")
+        sys.exit(1)
+
     generate_dataset(genre)
